@@ -5,6 +5,7 @@ export default function App() {
   let urlRelogio = './relogio.png';
   let [miliS, setMili] = useState(0);
   let [segundos, setSegundos] = useState(0);
+  let [labelBtn, setLabel] = useState('');
   let [isStart, setStart] = useState(false);
   let [minutos, setMinutos] = useState(0);
 
@@ -36,9 +37,9 @@ export default function App() {
       <Text style={styles.textLabel}>{minutos} m {segundos} s {miliS} ms</Text>
       <Image style={styles.image} source={require(urlRelogio)}/>
       <View style={styles.divBtns}>
-        
-        { isStart === false ? <Button title='Iniciar' color='blue' onPress={()=> {this.startTimer(); setStart(true)}}/>  : null }
-        { isStart === true ? <Button title='Reiniciar' color='green' onPress={()=> this.reloadTimer()}/> : null }
+      { isStart === false ? <Button title="Iniciar" color='blue' onPress={()=> {this.startTimer(); setStart(true)}}/> : <Button title="Continuar" color='blue' onPress={()=> {this.startTimer(); setStart(true)}}/> }
+      
+      { isStart === true ? <Button title='Reiniciar' color='green' onPress={()=> this.reloadTimer()}/> : null }
         { isStart === true ? <Button title='Parar' color='red' onPress={()=> this.stopTimer()}/>  : null }
 
       </View>

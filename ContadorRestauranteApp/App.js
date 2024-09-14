@@ -1,16 +1,29 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Pressable } from 'react-native';
 
 export default function App() {
   let [number, setNumber] = useState(0);
+  let urlPessoas = './pessoasFila.png'
+  aumentarNumero = () => {
+      setNumber(number += 1);
+  }
+  diminuarNumero = () => {
+    if(number > 0){
+        setNumber(number -= 1);
+    }
+  }
   return (
     <View style={styles.container}>
-        <Text style={styles.textLabel}>Bem-Vind@ ao Restaurante</Text>
-        <Text style={styles.textNumber}>Número de clientes: {number}</Text>
-        <View style={styles.btnsRow}>       
-          <Button title='-' onPress={() => setNumber(number = number - 1)}/>
-          <Button title='+' onPress={() => setNumber(number = number + 1)}/>
-
+        <Text style={styles.text}>Nº de Clientes no Restaurante:</Text>
+        <Text style={[styles.text, styles.textNumber]}>{number}</Text>
+        <Image style={styles.image} source={require(urlPessoas)}/>
+        <View style={styles.btnsRow}> 
+          <Pressable style={styles.btn} onPress={() => diminuarNumero()}>
+            <Text style={styles.labelBtn}>-</Text>
+          </Pressable>     
+          <Pressable style={styles.btn} onPress={() => aumentarNumero()}>
+            <Text style={styles.labelBtn}>+</Text>
+          </Pressable>   
         </View>
  
     </View>
@@ -27,18 +40,39 @@ const styles = StyleSheet.create({
   btnsRow: {
     marginTop: 50,
     flexDirection: 'row',
-    gap: 10
+    gap: 10,
   },
-  textNumber: {
-      fontWeight: 'bold',
-      fontSize: 30,
-      color: 'darkblue',
-      marginTop: 20
+  image:{
+    resizeMode: 'contain',
+    width: 300, 
+    height: 300
   },
-  textLabel: {
-    fontWeight: '600',
-    fontSize: 40,
+  btn:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'blue',
+  },  
+  textNumber:{
+    color: 'darkblue',
+    fontSize: 30,
+    marginTop: 30,
+    marginBottom: 30
+
+  },
+  labelBtn:{
+    color: 'white',
+    fontSize: 30,
     textAlign: 'center',
-    color: 'red'
-},
+    fontWeight: 'bold'
+  },
+  text: {
+      fontWeight: 'bold',
+      fontSize: 25,
+      marginTop: 20,
+      textAlign: 'center'
+  },
 });
