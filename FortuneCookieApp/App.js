@@ -2,10 +2,12 @@ import { StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native'
 import { useState  } from 'react';
 
 export default function App() {
-  let urlBiscoitoAberto = './assets/biscoito-aberto.png';
-  let urlBiscoitoFechado = './assets/biscoito-fechado.png';
+  let urlBiscoitoAberto = './biscoito-aberto.png';
+  let urlBiscoitoFechado = './biscoito-fechado.png';
   let [isPressed, setPressed] = useState(false);
   let [frase, setFrase] = useState('');
+  let [fraseNova, setFraseNova] = useState('');
+
   let [frases, setFrases] = useState([
         {frase: "A solidão é a sorte de todos os espíritos excepcionais."},
         {frase: "Não ser amado é falta de sorte, mas não amar é a própria infelicidade."},
@@ -27,16 +29,25 @@ export default function App() {
     var index = Math.floor(Math.random() * frases.length);
     return frases[index].frase;
   }
-  let fraseNova = fraseAleatoria();
-  if(frase != '' && frase != null){
-      while(fraseNova == frase){
-          fraseNova = fraseAleatoria();
-      }
-      frase = fraseNova;
+
+  carregarFrase = () => {
+    if(frase.length === 0){
+        setFrase(frase = fraseAleatoria());
+    }
+    else{
+        setFraseNova(fraseNova = fraseAleatoria());
+
+        while(frase === fraseNova){
+            setFraseNova(fraseNova = fraseAleatoria());
+        }
+        setFrase(frase = fraseNova);
+
+    }
+    console.log(`${frase}`);
+
   }
-  else{
-      frase = fraseNova;
-  }
+
+ 
   
   if(!isPressed){
     return (
@@ -47,7 +58,7 @@ export default function App() {
             <View style={styles.botao}>
               <Button  
                 title="Quebre o Biscoito"
-                onPress={() => setPressed(true)}
+                onPress={() => {setPressed(true); carregarFrase()}}
               />
             </View>
           </View>
@@ -60,11 +71,13 @@ export default function App() {
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.divImagemTexto}>
-            <Text style={styles.textLabel}>{fraseAleatoria()}</Text>
-            <Image style={styles.imagem} source={require(urlBiscoitoAberto)}/>
+            <View style={styles.divFrase}>
+              <Text style={styles.textLabel}>{frase}</Text>
+            </View>
+              <Image style={styles.imagem} source={require(urlBiscoitoAberto)}/>
             <View style={styles.botao}>
               <Button  
-                  title="Feche o biscoito"
+                  title="Novo biscoito"
                   onPress={() => setPressed(false)}
                 />
             </View>
@@ -81,15 +94,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imagem:{
-    maxWidth: 300,
-    maxHeight: 300,
-    textAlign: 'center',
+    maxWidth: 250,
+    maxHeight: 250,
+    resizeMode: 'contain'
   },
   textLabel:{
       color: 'black',
-      fontSize: 30,
+      fontSize: 25,
       textAlign: 'center',
+      fontWeight: 'bold'
   },
+  divFrase:{
+    width: 300,
+    borderColor: 'black',
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 15,
+},
   divImagemTexto:{
     alignItems: 'center',
     justifyContent: 'center',
@@ -100,6 +121,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     maxWidth: 100,
     alignSelf: 'center',
-    color: '#00f'
+    color: '#00f',
   }
 });
