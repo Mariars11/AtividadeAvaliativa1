@@ -54,16 +54,18 @@ export default function App() {
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.divImagemTexto}>
-            <Text>{fraseMotivacional}</Text>
-            <Image style={styles.imagem} source={{uri: urlImagem}}/>
-            <Text>{autor}</Text>
-            <View style={styles.botao}>
+            <Text style={styles.textFrase}>"{fraseMotivacional}"</Text>
+            <View style={styles.divImgAutor}>
+              <Image style={styles.imagem} source={{uri: urlImagem}}/>
+              <Text style={styles.textLabelImg}>{autor}</Text>
+            </View>
+          </View>
+          <View style={styles.botao}>
               <Button  
                 title="Gerar Citação"
                 onPress={() => {carregarFraseImagem()}}
               />
             </View>
-          </View>
         </ScrollView>
       </View>
     );
@@ -76,14 +78,38 @@ const styles = StyleSheet.create({
     marginTop: 90,
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center'
+  },
+  divImagemTexto:{
+    marginTop: 50,
+  },
+  textLabelImg:{
+    marginTop: 0,
+    fontWeight: 'bold',
+    fontSize: 15,
+    color: 'darkblue'
+  },
+  textFrase:{
+    width: 400,
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   imagem:{
     height: 200,
-    width: 200,
+    width: 250,
     resizeMode: 'contain'
   }, 
   botao:{
-    width: 100
+    width: 300,
+    marginTop: 100,
+    marginLeft: 40,
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+  divImgAutor:{
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
