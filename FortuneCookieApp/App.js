@@ -9,24 +9,35 @@ export default function App() {
   let [fraseNova, setFraseNova] = useState('');
 
   let [frases, setFrases] = useState([
-        {frase: "A solidão é a sorte de todos os espíritos excepcionais."},
-        {frase: "Não ser amado é falta de sorte, mas não amar é a própria infelicidade."},
-        {frase: "Se a sua vida for a melhor coisa que já te aconteceu, acredite, você tem mais sorte do que pode imaginar."},
-        {frase: "Eu acredito demais na sorte. E tenho constatado que, quanto mais duro eu trabalho, mais sorte eu tenho."},
-        {frase: "A sorte não existe. Aquilo a que chamas sorte é o cuidado com os pormenores."},
-        {frase: "Homens fracos acreditam na sorte. Homens fortes acreditam em causa e efeito."},
-        {frase: "A perseverança é a mãe da boa sorte."},
-        {frase: "Sorte é estar pronto quando a oportunidade vem."},
-        {frase: "A sorte favorece a mente bem preparada."},
-        {frase: "A sorte da mulher depende do amor que aceita."},
-        {frase: "Custa menos ao nosso amor-próprio caluniar a sorte do que acusar a nossa má conduta."},
-        {frase: "Quanto mais eu treino, mais sorte eu tenho."},
         {frase: "A vida trará coisas boas se tiver paciência."},
+        {frase: "Demonstre amor e alegria em todas as oportunidades e verá que a paz nasce dentro de si."},
+        {frase: "Se a sua vida for a melhor coisa que já te aconteceu, acredite, você tem mais sorte do que pode imaginar."},
+        {frase: "Não compense na ira o que lhe falta na razão."},
+        {frase: "Defeitos e virtudes são apenas dois lados da mesma moeda."},
+        {frase: "A maior de todas as torres começa no solo."},
+        {frase: "A perseverança é a mãe da boa sorte."},
+        {frase: "Todos os dias organiza os seus cabelos, por que não faz o mesmo com o coração?"},
+        {frase: "A sorte favorece a mente bem preparada."},
+        {frase: "Há três coisas que jamais voltam; a flecha lançada, a palavra dita e a oportunidade perdida."},
+        {frase: "A juventude não é uma época da vida, é um estado de espírito."},
+        {frase: "Quanto mais eu treino, mais sorte eu tenho."},
+        {frase: "Não importa o tamanho da montanha, ela não pode tapar o sol."},
         {frase: "Não há que ser forte. Há que ser flexível."},
-        {frase: "A sorte ajuda os audazes."}
+        {frase: "Lamentar aquilo que não temos é desperdiçar aquilo que já possuímos."},
+        {frase: "Uma bela flor é incompleta sem as suas folhas."},
+        {frase: "Sem o fogo do entusiasmo, não há o calor da vitória."},
+        {frase: "O riso é a menor distância entre duas pessoas."},
+        {frase: "Os defeitos são mais fortes quando o amor é fraco."},
+        {frase: "O conhecimento é a única virtude e a ignorância é o único vício."},
+        {frase: "Acredite em milagres, mas não dependa deles."},
+        {frase: "Você sempre será a sua melhor companhia!"},
+        {frase: "Realize o óbvio, pense no improvável e conquiste o impossível."},
+
   ]);
   fraseAleatoria = () => {
     var index = Math.floor(Math.random() * frases.length);
+    console.log(index);
+    
     return frases[index].frase;
   }
 

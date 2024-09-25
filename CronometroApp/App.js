@@ -7,6 +7,7 @@ export default function App() {
   let [segundos, setSegundos] = useState(0);
   let [labelBtn, setLabel] = useState('');
   let [isStart, setStart] = useState(false);
+  let [isStop, setStop] = useState(false);
   let [minutos, setMinutos] = useState(0);
 
   startTimer = () => {
@@ -26,7 +27,7 @@ export default function App() {
     clearInterval(this.interval);
   };
   reloadTimer = () => {
-    clearInterval(this.interval);
+    this.stopTimer();
     setSegundos(segundos = 0);
     setMili(miliS = 0);
     setMinutos(minutos = 0);
@@ -37,11 +38,10 @@ export default function App() {
       <Text style={styles.textLabel}>{minutos} m {segundos} s {miliS} ms</Text>
       <Image style={styles.image} source={require(urlRelogio)}/>
       <View style={styles.divBtns}>
-      { isStart === false ? <Button title="Iniciar" color='blue' onPress={()=> {this.startTimer(); setStart(true)}}/> : <Button title="Continuar" color='blue' onPress={()=> {this.startTimer(); setStart(true)}}/> }
-      
-      { isStart === true ? <Button title='Reiniciar' color='green' onPress={()=> this.reloadTimer()}/> : null }
-        { isStart === true ? <Button title='Parar' color='red' onPress={()=> this.stopTimer()}/>  : null }
-
+      { isStart === false ? <Button title="Iniciar" color='blue' onPress={()=> {this.startTimer(); setStart(true)}}/> : null }
+      {isStop === true ? <Button title="Continuar" color='blue' onPress={()=> {this.startTimer(); setStart(true); setStop(false)}}/> : null}
+      { isStart === true ? <Button title='Reiniciar' color='green' onPress={()=> {this.reloadTimer(); setStop(false)}}/> : null }
+        { isStart === true ? <Button title='Parar' color='red' onPress={()=> {this.stopTimer(); setStop(true)}}/>  : null }
       </View>
     </View>
   );
