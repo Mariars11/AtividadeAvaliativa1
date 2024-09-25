@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     color: 'darkblue'
   },
   textFrase:{
-    width: 400,
+    width: 350,
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
